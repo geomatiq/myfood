@@ -23,6 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myfoodapp.WebServer", "myfo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myfoodapp.Headless", "myfoodapp.Headless\myfoodapp.Headless.csproj", "{3E52FADA-9A53-4BA5-8D38-E567D0EE6EF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalRessources", "ExternalRessources", "{48E3D754-2413-4A3B-924F-513F0460BB1B}"
+	ProjectSection(SolutionItems) = preProject
+		ExternalRessources\microsoft.owin.security.apikey.1.1.1.nupkg = ExternalRessources\microsoft.owin.security.apikey.1.1.1.nupkg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

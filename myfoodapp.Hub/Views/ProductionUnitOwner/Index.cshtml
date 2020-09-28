@@ -41,6 +41,7 @@
             columns.Bound(c => c.pioneerCitizenNumber).Width(40).Title("#").Groupable(false);
             columns.ForeignKey(c => c.userId, (System.Collections.IEnumerable)ViewData["users"], "Id", "UserName").Title("[[[user]]]").Width(120);
             columns.Bound(c => c.contactMail).Width(120).MinScreenWidth(380).Groupable(false).Filterable(false);
+            columns.Bound(c => c.office365Mail).Width(120).MinScreenWidth(380).Groupable(false).Filterable(false);
             columns.Bound(c => c.phoneNumber).Width(120).MinScreenWidth(380).Groupable(false).Filterable(false);
             columns.Bound(c => c.location).Width(140).MinScreenWidth(380).Groupable(false).Filterable(false);
             columns.ForeignKey(c => c.languageId, (System.Collections.IEnumerable)ViewData["languages"], "Id", "name").Title("[[[lang]]]").Width(100).MinScreenWidth(380);
@@ -75,6 +76,7 @@
                 model.Field(c => c.pioneerCitizenName).Editable(true);
                 model.Field(c => c.pioneerCitizenNumber).Editable(true);
                 model.Field(c => c.contactMail).Editable(true);
+                model.Field(c => c.office365Mail).Editable(true);
                 model.Field(c => c.location).Editable(true);
                 model.Field(c => c.notificationPushKey).Editable(false);
                 model.Field(c => c.preferedMomentId).DefaultValue(1);

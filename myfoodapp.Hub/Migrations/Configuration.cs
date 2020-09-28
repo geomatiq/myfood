@@ -246,6 +246,10 @@ namespace myfoodapp.Hub.Migrations
             context.EventTypeItems.Add(new EventTypeItem() { Id = 35, order = 13, eventType = actionEventTypes, isRestrictedForAdmin = true, name = "[[[Send Mail]]]" });
             context.EventTypeItems.Add(new EventTypeItem() { Id = 36, order = 14, eventType = actionEventTypes, isRestrictedForAdmin = true, name = "[[[Call Pioneer]]]" });
 
+            //add new event type (calcium / micronutriment)
+            context.EventTypeItems.Add(new EventTypeItem() { Id = 65, order = 15, eventType = actionEventTypes, isRestrictedForAdmin = false, name = "[[[Add calcium]]]" });
+            context.EventTypeItems.Add(new EventTypeItem() { Id = 66, order = 16, eventType = actionEventTypes, isRestrictedForAdmin = false, name = "[[[Add Micronutriment]]]" });
+
             context.EventTypeItems.Add(new EventTypeItem() { Id = 37, order = 0, eventType = improvementEventTypes, isRestrictedForAdmin = false, name = "[[[Install extra towers]]]" });
             context.EventTypeItems.Add(new EventTypeItem() { Id = 38, order = 1, eventType = improvementEventTypes, isRestrictedForAdmin = false, name = "[[[Install double door front]]]" });
             context.EventTypeItems.Add(new EventTypeItem() { Id = 39, order = 2, eventType = improvementEventTypes, isRestrictedForAdmin = false, name = "[[[Install double door back]]]" });

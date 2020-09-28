@@ -33,6 +33,7 @@ namespace myfoodapp.Hub.Services
                     pioneerCitizenNumber = po.pioneerCitizenNumber,
                     pioneerCitizenName = po.pioneerCitizenName,
                     contactMail = po.contactMail,
+                    office365Mail = po.office365Account,
                     phoneNumber = po.phoneNumber,
                     location = po.location,
                     notificationPushKey = po.notificationPushKey,
@@ -84,6 +85,7 @@ namespace myfoodapp.Hub.Services
             entity.pioneerCitizenNumber = currentProductionUnitOwnerViewModel.pioneerCitizenNumber;
             entity.pioneerCitizenName = currentProductionUnitOwnerViewModel.pioneerCitizenName;
             entity.contactMail = currentProductionUnitOwnerViewModel.contactMail;
+            entity.office365Account = currentProductionUnitOwnerViewModel.office365Mail;
             entity.phoneNumber = currentProductionUnitOwnerViewModel.phoneNumber;
             entity.location = currentProductionUnitOwnerViewModel.location;
             entity.notificationPushKey = currentProductionUnitOwnerViewModel.notificationPushKey;
@@ -127,6 +129,7 @@ namespace myfoodapp.Hub.Services
                 target.pioneerCitizenNumber = currentProductionUnitOwnerViewModel.pioneerCitizenNumber;
                 target.pioneerCitizenName = currentProductionUnitOwnerViewModel.pioneerCitizenName;
                 target.contactMail = currentProductionUnitOwnerViewModel.contactMail;
+                target.office365Account = currentProductionUnitOwnerViewModel.office365Mail;
                 target.phoneNumber = currentProductionUnitOwnerViewModel.phoneNumber;
                 target.location = currentProductionUnitOwnerViewModel.location;
                 target.notificationPushKey = currentProductionUnitOwnerViewModel.notificationPushKey;

@@ -53,6 +53,7 @@ namespace myfoodapp.Hub.Models
         public int pioneerCitizenNumber { get; set; }
         public string pioneerCitizenName { get; set; }
         public string contactMail { get; set; }
+        public string office365Account { get; set; }
         public string phoneNumber { get; set; }
         public string location { get; set; }
         public Language language { get; set; }

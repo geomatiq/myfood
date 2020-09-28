@@ -33,6 +33,12 @@
     </div>
 
     <div style="margin:10px">
+        @Html.LabelFor(model => model.office365Mail)
+        <br />
+        @Html.Kendo().TextBoxFor(model => model.office365Mail)
+    </div>
+
+    <div style="margin:10px">
         @Html.LabelFor(model => model.phoneNumber)
         <br />
         @Html.EditorFor(model => model.phoneNumber)
