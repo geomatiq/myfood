@@ -61,7 +61,8 @@ namespace myfoodapp.Hub.Controllers
                 Login = applicationUser.UserName,
                 NotificationEmail = currentProductOwner.contactMail,
                 IsMailNotificationActivated = currentProductOwner.isMailNotificationActivated,
-                Language = currentLanguageId
+                Language = currentLanguageId,
+                HasFahrenheitSetting = currentProductOwner.hasFahrenheitSetting
             });
         }
 
@@ -79,6 +80,7 @@ namespace myfoodapp.Hub.Controllers
             currentProductionUnitOwner.language = db.Languages.FirstOrDefault(l => l.Id == model.Language);
             currentProductionUnitOwner.isMailNotificationActivated = model.IsMailNotificationActivated;
             currentProductionUnitOwner.contactMail = model.NotificationEmail;
+            currentProductionUnitOwner.hasFahrenheitSetting = model.HasFahrenheitSetting;
 
             try
             {

@@ -49,6 +49,9 @@ namespace myfoodapp.Hub.Models
         public bool? IsMailNotificationActivated { get; set; }
 
         public int Language { get; set; }
+
+        [Display(Name = "[[[Display the temperature into Farenheit]]]")]
+        public bool? HasFahrenheitSetting { get; set; }
     }
 
     public class RegisterViewModel

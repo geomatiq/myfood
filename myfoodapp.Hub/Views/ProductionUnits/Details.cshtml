@@ -4,6 +4,38 @@
 	ViewBag.Title = "Details";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+        float[] waterTempRedLevel = new float[] { 0, 32 };
+        float[] waterTempYellowLevel = new float[] { 5, 28 };
+        float[] waterTempGreenLevel = new float[] { 12, 24 };
+        float[] airTempRedLevel = new float[] { 0, 40 };
+        float[] airTempYellowLevel = new float[] { 5, 32 };
+        float[] airTempGreenLevel = new float[] { 12, 28 };
+        string[] months = new string[] { 
+			"[[[Jan]]]",
+			"[[[Feb]]]",
+			"[[[Mar]]]",
+			"[[[Apr]]]",
+			"[[[May]]]",
+			"[[[June]]]",
+			"[[[July]]]",
+			"[[[Aug]]]",
+			"[[[Sept]]]",
+			"[[[Oct]]]",
+			"[[[Nov]]]",
+			"[[[Dec]]]",
+		};
+    }
+    @if (ViewBag.HasFahrenheitSetting == true)
+    {
+        waterTempRedLevel = new float[] { (float)waterTempRedLevel[0] * 9 / 5 + 32, (float)waterTempRedLevel[1] * 9 / 5 + 32 };
+		waterTempYellowLevel = new float[] { (float)waterTempYellowLevel[0] * 9 / 5 + 32, (float)waterTempYellowLevel[1] * 9 / 5 + 32 };
+		waterTempGreenLevel = new float[] { (float)waterTempGreenLevel[0] * 9 / 5 + 32, (float)waterTempGreenLevel[1] * 9 / 5 + 32 };
+		airTempRedLevel = new float[] { (float)airTempRedLevel[0] * 9 / 5 + 32, (float)airTempRedLevel[1] * 9 / 5 + 32 };
+		airTempYellowLevel = new float[] { (float)airTempYellowLevel[0] * 9 / 5 + 32, (float)airTempYellowLevel[1] * 9 / 5 + 32 };
+		airTempGreenLevel = new float[] { (float)airTempGreenLevel[0] * 9 / 5 + 32, (float)airTempGreenLevel[1] * 9 / 5 + 32 };
+	}
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -13,7 +45,25 @@
 <script src="~/Content/Datepicker/datepicker.en.js"></script>
 
 <script type="text/javascript">
-
+    window.rangeEnabled = true;
+	Highcharts.setOptions({
+		lang: {
+            shortMonths: [
+                "@months[0]",
+                "@months[1]",
+                "@months[2]",
+                "@months[3]",
+                "@months[4]",
+                "@months[5]",
+                "@months[6]",
+                "@months[7]",
+                "@months[8]",
+                "@months[9]",
+                "@months[10]",
+                "@months[11]",
+            ],
+		}
+	});
     var dialog = $("#dialog");
 
     (function (H) {
@@ -46,8 +96,7 @@
                     var date = new Date(response[i][0].toString());
                     response[i][0] = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
                 });
-
-                Highcharts.chart('ph-chart', {
+                window.PHTempChartData = {
                     chart: {
                         type: 'spline',
                         backgroundColor: 'transparent',
@@ -82,6 +131,23 @@
                         minorGridLineWidth: 1,
                         gridLineWidth: 1,
                         alternateGridColor: null,
+                        plotBands: [
+                            {
+                                from: 5.5,
+                                to: 8.8,
+                                color: '#F7CAAC',
+                            },
+                            {
+                                from: 6,
+                                to: 7.9,
+                                color: '#FFF2CC',
+                            },
+                            {
+                                from: 6.4,
+                                to: 7.2,
+                                color: '#E1EFD8',
+                            },
+                        ],
 
                     },
                     tooltip: {
@@ -92,9 +158,9 @@
                         spline: {
                             marker: {
                                 enabled: false
-							},
-							lineWidth: 4,
-							color: '#2EA636',
+                            },
+                            lineWidth: 4,
+                            color: '#2EA636',
                         }
                     },
                     series: [{
@@ -109,7 +175,9 @@
                             fontSize: '10px'
                         }
                     }
-                });
+                };
+
+                Highcharts.chart('ph-chart', window.PHTempChartData);
                 $('.highcharts-contextbutton').remove();
                 $('.highcharts-credits').remove();
                 $('.highcharts-label').remove();
@@ -128,8 +196,7 @@
                     var date = new Date(response[i][0].toString());
                     response[i][0] = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
                 });
-
-                Highcharts.chart('watertemp-chart', {
+                window.waterTempChartData = {
                     chart: {
                         type: 'spline',
                         backgroundColor: 'transparent',
@@ -162,7 +229,23 @@
                         minorGridLineWidth: 1,
                         gridLineWidth: 1,
                         alternateGridColor: null,
-
+                        plotBands: [
+                            {
+								from: @waterTempRedLevel[0],
+								to: @waterTempRedLevel[1],
+								color: '#F7CAAC',
+                            },
+                            {
+								from: @waterTempYellowLevel[0],
+								to: @waterTempYellowLevel[1],
+								color: '#FFF2CC',
+                            },
+                            {
+								from: @waterTempGreenLevel[0],
+								to: @waterTempGreenLevel[1],
+								color: '#E1EFD8',
+                            },
+                        ],
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
@@ -189,7 +272,9 @@
                             fontSize: '10px'
                         }
                     }
-                });
+                };
+
+                Highcharts.chart('watertemp-chart', window.waterTempChartData);
                 $('.highcharts-contextbutton').remove();
                 $('.highcharts-credits').remove();
             }
@@ -210,7 +295,7 @@
                     var date = new Date(response[i][0].toString());
                     response[i][0] = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
                 });
-                Highcharts.chart('airtemp-chart', {
+                window.airTempChartData = {
                     chart: {
                         type: 'spline',
                         backgroundColor: 'transparent',
@@ -240,6 +325,23 @@
                         minorGridLineWidth: 1,
                         gridLineWidth: 1,
                         alternateGridColor: null,
+                        plotBands: [
+                            {
+                                from: @airTempRedLevel[0],
+                                to: @airTempRedLevel[1],
+                                color: '#F7CAAC',
+                            },
+                            {
+                                from: @airTempYellowLevel[0],
+                                to: @airTempYellowLevel[1],
+                                color: '#FFF2CC',
+                            },
+                            {
+                                from: @airTempGreenLevel[0],
+                                to: @airTempGreenLevel[1],
+                                color: '#E1EFD8',
+                            },
+                        ],
 
                     },
                     tooltip: {
@@ -250,15 +352,15 @@
                         spline: {
                             marker: {
                                 enabled: false
-							},
-							lineWidth: 4,
+                            },
+                            lineWidth: 4,
                         }
                     },
                     series: [
                         {
                             name: 'Air Temp',
                             data: response.air,
-							color: '#2EA636',
+                            color: '#2EA636',
                             label: {
                                 enabled: false,
                             },
@@ -267,7 +369,7 @@
                         {
                             name: '[[[External Air Temp]]]',
                             data: response.externalAir,
-							color: '#E54848',
+                            color: '#E54848',
                             label: {
                                 enabled: false,
                             }
@@ -278,7 +380,8 @@
                             fontSize: '10px'
                         }
                     }
-                });
+                };
+                Highcharts.chart('airtemp-chart', window.airTempChartData);
                 $('.highcharts-contextbutton').remove();
                 $('.highcharts-credits').remove();
             },
@@ -287,6 +390,74 @@
                 console.log('hmm');
             }
         });
+    }
+    function toggleRanges() {
+		
+        window.rangeEnabled = !window.rangeEnabled;
+
+        if (window.rangeEnabled) {
+            window.waterTempChartData.yAxis.plotBands = [
+                {
+                    from: @waterTempRedLevel[0],
+                    to: @waterTempRedLevel[1],
+                    color: '#F7CAAC',
+                },
+                {
+                    from: @waterTempYellowLevel[0],
+                    to: @waterTempYellowLevel[1],
+                    color: '#FFF2CC',
+                },
+                {
+                    from: @waterTempGreenLevel[0],
+                    to: @waterTempGreenLevel[1],
+                    color: '#E1EFD8',
+                },
+            ];
+
+            window.airTempChartData.yAxis.plotBands = [
+                {
+                    from: @airTempRedLevel[0],
+                    to: @airTempRedLevel[1],
+                    color: '#F7CAAC',
+                },
+                {
+                    from: @airTempYellowLevel[0],
+                    to: @airTempYellowLevel[1],
+                    color: '#FFF2CC',
+                },
+                {
+                    from: @airTempGreenLevel[0],
+                    to: @airTempGreenLevel[1],
+                    color: '#E1EFD8',
+                },
+            ];
+
+            window.PHTempChartData.yAxis.plotBands = [
+                {
+                    from: 5.5,
+                    to: 8.8,
+                    color: '#F7CAAC',
+                },
+                {
+                    from: 6,
+                    to: 7.9,
+                    color: '#FFF2CC',
+                },
+                {
+                    from: 6.4,
+                    to: 7.2,
+                    color: '#E1EFD8',
+                },
+            ];
+        }
+        else {
+            window.waterTempChartData.yAxis.plotBands = [];
+            window.airTempChartData.yAxis.plotBands = [];
+            window.PHTempChartData.yAxis.plotBands = [];
+        }
+		Highcharts.chart('ph-chart', window.PHTempChartData);
+        Highcharts.chart('watertemp-chart', window.waterTempChartData);
+        Highcharts.chart('airtemp-chart', window.airTempChartData);
     }
     function HumidityMeasureChart(productId, ProductRange) {
         $.ajax({
@@ -714,7 +885,7 @@
 			WaterTempMeasureChart(productionUnitId, "thisLastDays");
 			AirTempMeasureChart(productionUnitId, "thisLastDays");
             HumidityMeasureChart(productionUnitId, "thisLastDays");
-            AirCarboneDioxideMeasureChart(productionUnitId, "thisLastDays");
+            //AirCarboneDioxideMeasureChart(productionUnitId, "thisLastDays");
 
 		}
 
@@ -723,7 +894,7 @@
 			WaterTempMeasureChart(productionUnitId, "thisWeek");
 			AirTempMeasureChart(productionUnitId, "thisWeek");
             HumidityMeasureChart(productionUnitId, "thisWeek");
-            AirCarboneDioxideMeasureChart(productionUnitId, "thisWeek");
+            //AirCarboneDioxideMeasureChart(productionUnitId, "thisWeek");
 		}
 
 		if (sel.options[sel.selectedIndex].text == "[[[Last Three Months]]]") {
@@ -731,7 +902,7 @@
 			WaterTempMeasureChart(productionUnitId, "lastThreeMonths");
 			AirTempMeasureChart(productionUnitId, "lastThreeMonths");
             HumidityMeasureChart(productionUnitId, "lastThreeMonths");
-            AirCarboneDioxideMeasureChart(productionUnitId, "lastThreeMonths");
+            //AirCarboneDioxideMeasureChart(productionUnitId, "lastThreeMonths");
 		}
 
     }
@@ -835,24 +1006,25 @@
 <div id="main-section-header" class="row big-section">
 	<h2 id="title" class="col-lg-6">[[[Production Unit Details]]]</h2>
 	<div id="title-buttons" class="col-lg-6">
-        <img id="signal-img" width="40" title="@ViewBag.SignalStrenghtText" src="@ViewBag.SignalStrenghtImagePath" />
+		<img id="signal-img" width="40" title="@ViewBag.SignalStrenghtText" src="@ViewBag.SignalStrenghtImagePath" />
 		<select onchange="onThisWeekClick(this)" class="change-graph">
-            <option>[[[This Last Day]]]</option>
-            <option>[[[Last Week]]]</option>
-            <option>[[[Last Three Months]]]</option>
+			<option>[[[This Last Day]]]</option>
+			<option>[[[Last Week]]]</option>
+			<option>[[[Last Three Months]]]</option>
 		</select>
-		<button class="fill" data-toggle="modal" data-target="#performanceModal">[[[View Info]]]</button>        
+		<button class="fill" data-toggle="modal" data-target="#performanceModal">[[[View Info]]]</button>
 	</div>
 	<div style="clear:both;"></div>
 </div>
 
 <div id="statsContainerTop" class="row">
-	
+
 	<div class="sticky-panel">
 		<div class="left-buttons-section">
 			<button class="btn btn-transparent" data-toggle="modal" data-target="#add-event" onclick="AddEventPopupInit()">[[[Add Event]]]</button>
 			<button class="btn btn-transparent" onclick="onViewEventsClick()">[[[View Events]]]</button>
 			<button class="btn btn-transparent" onclick="onManageUnitClick()">[[[Manage Unit]]]</button>
+			<button class="btn btn-transparent" onclick="toggleRanges()">[[[Enable / Disable Range]]]</button>
 			<button class="btn btn-green-sm" onclick="onExportCSVClick()">[[[Export CSV]]]</button>
 
 		</div>
@@ -886,10 +1058,17 @@
 			<div id="ph-chart"></div>
 		</div>
 	</div>
-    
+
 	<div id="WaterTempContainer" class="col-md-6">
 		<div class="wrapper">
-			<h3 class="graph-header">[[[Water Temperature (°C)]]]</h3>
+			@if (ViewBag.HasFahrenheitSetting == true)
+			{
+				<h3 class="graph-header">[[[Water Temperature (°F)]]]</h3>
+			}
+			else
+			{
+				<h3 class="graph-header">[[[Water Temperature (°C)]]]</h3>
+			}
 			<div class="sparkline-container">
 				<div>
 					<div class="column-left">
@@ -914,10 +1093,17 @@
 
 		</div>
 	</div>
-   
+
 	<div id="AirTempContainer" class="col-md-6">
 		<div class="wrapper">
-			<h3 class="graph-header">[[[Air Temperature (°C)]]]</h3>
+			@if (ViewBag.HasFahrenheitSetting == true)
+			{
+				<h3 class="graph-header">[[[Air Temperature (°F)]]]</h3>
+			}
+			else
+			{
+				<h3 class="graph-header">[[[Air Temperature (°C)]]]</h3>
+			}
 			<div class="sparkline-container">
 				<div>
 					<div class="column-left">
@@ -1016,7 +1202,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="company-name">
-							
+
 						</div>
 						<div class="company-logo">
 							<img src="" alt="" class="img-responsive">
@@ -1122,9 +1308,11 @@
 	#statsContainerTop {
 		position: relative;
 	}
+
 	#main-section-header {
 		display: block;
 	}
+
 	.datepickers-container .datepicker {
 		z-index: 2001;
 	}
@@ -1246,60 +1434,72 @@
 		padding: 10px 15px;
 		align-items: center;
 	}
-	.sticky-panel .unit-dropdown {
-		display: inline-block;
-	}
-	.sticky-panel .left-buttons-section .btn,
-	.sticky-panel .right-buttons-section .btn {
-		min-width: 135px;
-	}
+
+		.sticky-panel .unit-dropdown {
+			display: inline-block;
+		}
+
+		.sticky-panel .left-buttons-section .btn,
+		.sticky-panel .right-buttons-section .btn {
+			min-width: 135px;
+		}
+
 	@@media (max-width: 1150px) {
 		.sticky-panel {
 			flex-direction: column;
 		}
 	}
-		
+
 	@@media (max-width: 590px) {
 		.sticky-panel {
 			position: relative;
 		}
-		.sticky-panel .right-buttons-section,
-		.sticky-panel .left-buttons-section {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-		}
-		.sticky-panel .left-buttons-section .unit-dropdown {
-			margin: 2px 0;
-		}
-		.sticky-panel .left-buttons-section .btn,
-		.sticky-panel .right-buttons-section .btn {
-			margin: 7px 0;
-		}
-		.sticky-panel .left-buttons-section .btn,
-		.sticky-panel .right-buttons-section .btn,
-		.sticky-panel .right-buttons-section .unit-dropdown,
-		.sticky-panel .right-buttons-section .unit-dropdown .change-graph {
-			width: 100%;
-		}
+
+			.sticky-panel .right-buttons-section,
+			.sticky-panel .left-buttons-section {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+			}
+
+				.sticky-panel .left-buttons-section .unit-dropdown {
+					margin: 2px 0;
+				}
+
+				.sticky-panel .left-buttons-section .btn,
+				.sticky-panel .right-buttons-section .btn {
+					margin: 7px 0;
+				}
+
+				.sticky-panel .left-buttons-section .btn,
+				.sticky-panel .right-buttons-section .btn,
+				.sticky-panel .right-buttons-section .unit-dropdown,
+				.sticky-panel .right-buttons-section .unit-dropdown .change-graph {
+					width: 100%;
+				}
 	}
+
 	.left-buttons-section .btn-transparent {
 		background: #e7e0d5;
 		color: #2b5a2e;
 		font-weight: 700;
 		letter-spacing: .5px;
 	}
+
 	.right-buttons-section {
 		display: flex;
 		align-items: center;
 	}
-	.right-buttons-section .change-graph {
-		padding: 0.7em;
-	}
-	.right-buttons-section .btn-green {
-		letter-spacing: .5px;
-		margin: 0.5em;
-	}
+
+		.right-buttons-section .change-graph {
+			padding: 0.7em;
+		}
+
+		.right-buttons-section .btn-green {
+			letter-spacing: .5px;
+			margin: 0.5em;
+		}
+
 	.column-right {
 		color: #707070;
 		float: right;

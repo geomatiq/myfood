@@ -190,6 +190,7 @@ namespace myfoodapp.Hub.Controllers
                     ViewBag.DisplayManagementBtn = "All";
                 }
             }
+            ViewBag.HasFahrenheitSetting = db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting;
             ViewBag.Title = "Production Unit Detail Page";
 
 			return View();
@@ -512,6 +513,13 @@ namespace myfoodapp.Hub.Controllers
             var waterTemperature = measureService.Read(SensorTypeEnum.waterTemperature, id, range).ToList();
             var filteredResult = FilterArrayForGraph(waterTemperature);
 
+            if (db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting == true)
+            {
+                filteredResult.ForEach(result => {
+                    result.value = Math.Round(result.value * 9 / 5, 1) + 32;
+                });
+            }
+
             var json = new List<List<object>>();
             foreach (var waterTempMeasure in filteredResult)
             {
@@ -543,8 +551,10 @@ namespace myfoodapp.Hub.Controllers
             var filteredResult = FilterArrayForGraph(airTemperature);
 
             var air = new List<List<object>>();
+            var hasFahrenheitSetting = db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting;
             foreach (var airtemp in filteredResult)
             {
+                airtemp.value = hasFahrenheitSetting == true ? Math.Round(airtemp.value * 9 / 5, 1) + 32 : airtemp.value;
                 var list = new List<object>();
                 list.Add(airtemp.captureDate.ToString("R"));
                 list.Add(airtemp.value);
@@ -558,6 +568,7 @@ namespace myfoodapp.Hub.Controllers
             var externalAir = new List<List<object>>();
             foreach (var externalAirTemperature in airExternalTemperatureFiltered)
             {
+                externalAirTemperature.value = hasFahrenheitSetting == true ? Math.Round(externalAirTemperature.value * 9 / 5, 1) + 32 : externalAirTemperature.value;
                 var list = new List<object>();
                 list.Add(externalAirTemperature.captureDate.ToString("R"));
                 list.Add(externalAirTemperature.value);
@@ -715,6 +726,21 @@ namespace myfoodapp.Hub.Controllers
             var waterTempSensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.waterTemperature, db);
             var airTempSensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.airTemperature, db);
             var humiditySensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.humidity, db);
+            if (db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting == true)
+            {
+                if (waterTempSensorValueSet.CurrentCaptureTime != "-")
+                {
+                    waterTempSensorValueSet.AverageDayValue = Math.Round(waterTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.AverageHourValue = Math.Round(waterTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.CurrentValue = Math.Round(waterTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+                }
+                if (airTempSensorValueSet.CurrentCaptureTime != "-")
+                {
+                    airTempSensorValueSet.AverageDayValue = Math.Round(airTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                    airTempSensorValueSet.AverageHourValue = Math.Round(airTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                    airTempSensorValueSet.CurrentValue = Math.Round(airTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+                }
+            }
 
             var options = db.OptionLists.Include(o => o.productionUnit)
                         .Include(o => o.option)

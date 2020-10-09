@@ -86,50 +86,59 @@
 </div>
 
 <div class="flex-block">
-    <form action="/MyInfo/Update" class="update-form" method="post" role="form">
+	<form action="/MyInfo/Update" class="update-form" method="post" role="form">
 
-        @using (Html.BeginForm("Update", "MyInfo", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-            var checkedda = Model.IsMailNotificationActivated == true ? "checked" : "";
-            @Html.AntiForgeryToken()
-            <div class="error">
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">[[[Login Identification]]]</label>
-                <input class="default-input" type="email" name="Login" readonly value="@Model.Login" />
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">
-                    [[[Enable Notification Email]]]
-                </label>
-                <label for="IsMailNotificationActivated" class="checkbox-container">
-                    @Html.CheckBox("IsMailNotificationActivated", Model.IsMailNotificationActivated)
-                    <span class="checkmark"></span>
-                </label>
+		@using (Html.BeginForm("Update", "MyInfo", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+		{
+			var checkedda = Model.IsMailNotificationActivated == true ? "checked" : "";
+			@Html.AntiForgeryToken()
+			<div class="error">
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">[[[Login Identification]]]</label>
+				<input class="default-input" type="email" name="Login" readonly value="@Model.Login" />
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">
+					[[[Enable Notification Email]]]
+				</label>
+				<label for="IsMailNotificationActivated" class="checkbox-container">
+					@Html.CheckBox("IsMailNotificationActivated", Model.IsMailNotificationActivated)
+					<span class="checkmark"></span>
+				</label>
 
 
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">[[[Notification Email]]]</label>
-                <input class="default-input" type="email" name="NotificationEmail" value="@Model.NotificationEmail" />
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">[[[Old Password]]]</label>
-                <input class="default-input" type="password" name="OldPassword" />
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">[[[New Password]]]</label>
-                <input class="default-input" type="password" name="NewPassword" />
-            </div>
-            <div class="i-wrapper">
-                <label class="input-caption">[[[Choose the application default language]]]</label>
-                <select name="Language" class="default-input" id="language-dropdown"></select>
-            </div>
-            <div class="i-wrapper-btn">
-                <button class="btn-infosave">[[[Save]]]</button>
-            </div>
-        }
-    </form>
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">[[[Notification Email]]]</label>
+				<input class="default-input" type="email" name="NotificationEmail" value="@Model.NotificationEmail" />
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">[[[Old Password]]]</label>
+				<input class="default-input" type="password" name="OldPassword" />
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">[[[New Password]]]</label>
+				<input class="default-input" type="password" name="NewPassword" />
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">[[[Choose the application default language]]]</label>
+				<select name="Language" class="default-input" id="language-dropdown"></select>
+			</div>
+			<div class="i-wrapper">
+				<label class="input-caption">
+					[[[Display the temperature into Farenheit]]]
+				</label>
+				<label for="HasFahrenheitSetting" class="checkbox-container">
+					@Html.CheckBox("HasFahrenheitSetting", Model.HasFahrenheitSetting)
+					<span class="checkmark"></span>
+				</label>
+			</div>
+			<div class="i-wrapper-btn">
+				<button class="btn-infosave">[[[Save]]]</button>
+			</div>
+		}
+	</form>
 </div>
 
 
