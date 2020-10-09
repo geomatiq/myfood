@@ -3,7 +3,7 @@
 <div class="container" style="padding: 20px;">
     <div class="row">
 
-        <SpinLoader IsLoading="@isLoading">
+        <SpinLoader IsLoading="@isLoading" Center=true>
          <ContentTemplate>
 
             <div class="col">
@@ -115,10 +115,7 @@
         var lg = LogManager.GetInstance;
 
         isLoading = true;
-        //Task.Delay(2000);
-        await Task.Delay(3000);
-
-        isLoading = false;
+        await Task.Delay(1000);
 
         EventHandler handler = null;
 
@@ -132,8 +129,7 @@
                 userSettings.sigfoxVersion = (isSigfoxVersionOne == true) ? SigfoxVersion.v1 : SigfoxVersion.v2;
                 userSettingsManager.SyncUserSettings(userSettings);
 
-                mesureBackgroundTask.Run();
-                
+                mesureBackgroundTask.Run();            
             }
             catch (Exception ex)
             {
@@ -141,25 +137,26 @@
             }
             finally
             {
-                isLoading = false;
                 lg.AppendLog(Log.CreateLog("Settings saved", LogType.Information));        
             }
         };
 
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
+
+        await Task.Delay(3000);
+        isLoading = false;
         
         StateHasChanged();
     }
-    public void ResetHardwareBackgroundTask_Completed(object sender, EventArgs e)
-    {
-        isLoading = false;
-    }
 
-    void SetInternalClockClick(MouseEventArgs args)
+    async Task SetInternalClockClick(MouseEventArgs args)
     {
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
         var lg = LogManager.GetInstance;
+
+        isLoading = true;
+        await Task.Delay(1000);
             
         EventHandler handler = null;
 
@@ -193,10 +190,13 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+
         StateHasChanged();
     }
 
-    void SetPHCalibrationClick(MouseEventArgs args)
+    async Task SetPHCalibrationClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Set pH to 7 started", LogType.Information));
@@ -228,13 +228,19 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+
         StateHasChanged();
     }
  
-    void PerformUnitTestClick(MouseEventArgs args)
+    async Task PerformUnitTestClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Integreation Testing started", LogType.Information));
+
+        isLoading = true;
+        await Task.Delay(1000);
 
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
 
@@ -265,13 +271,19 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+
         StateHasChanged();
     }
 
-    void ResetCalibrationClick(MouseEventArgs args)
+    async Task ResetCalibrationClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Reset Calibration started", LogType.Information));
+
+        isLoading = true;
+        await Task.Delay(1000);
 
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
 
@@ -300,13 +312,19 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+
         StateHasChanged();
     }
 
-    void ClearDataSettingsClick(MouseEventArgs args)
+    async Task ClearDataSettingsClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Clear Data and Settings started", LogType.Information));
+
+        isLoading = true;
+        await Task.Delay(1000);
 
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
 
@@ -339,13 +357,19 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+
         StateHasChanged();
     }
 
-     void RebootAppClick(MouseEventArgs args)
+    async Task RebootAppClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Reboot app started", LogType.Information));
+
+        isLoading = true;
+        await Task.Delay(1000);
 
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
 
@@ -372,6 +396,9 @@
 
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
+
+        await Task.Delay(3000);
+        isLoading = false;
 
         StateHasChanged();
     }
