@@ -44,7 +44,7 @@
 <script src="~/Content/Datepicker/datepicker.en.js"></script>
 
 <script type="text/javascript">
-    window.rangeEnabled = true;
+    window.rangeEnabled = false;
 	Highcharts.setOptions({
 		lang: {
             shortMonths: [
@@ -133,23 +133,6 @@
                             minorGridLineWidth: 1,
                             gridLineWidth: 1,
                             alternateGridColor: null,
-                            plotBands: [
-                            {
-                                from: 5.5,
-                                to: 8.8,
-                                color: '#F7CAAC',
-                            },
-                            {
-                                from: 6,
-                                to: 7.9,
-                                color: '#FFF2CC',
-                            },
-                            {
-                                from: 6.4,
-                                to: 7.2,
-                                color: '#E1EFD8',
-                            },
-                        ],
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
@@ -230,24 +213,6 @@
                             minorGridLineWidth: 1,
                             gridLineWidth: 1,
                             alternateGridColor: null,
-                            plotBands: [
-                                {
-								    from: @waterTempRedLevel[0],
-								    to: @waterTempRedLevel[1],
-								    color: '#F7CAAC',
-                                },
-                                {
-								    from: @waterTempYellowLevel[0],
-								    to: @waterTempYellowLevel[1],
-								    color: '#FFF2CC',
-                                },
-                                {
-								    from: @waterTempGreenLevel[0],
-								    to: @waterTempGreenLevel[1],
-								    color: '#E1EFD8',
-                                },
-                            ],
-
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
@@ -325,24 +290,7 @@
                             },
                             minorGridLineWidth: 1,
                             gridLineWidth: 1,
-                            alternateGridColor: null, 
-                            plotBands: [
-                                {
-                                    from: @airTempRedLevel[0],
-                                    to: @airTempRedLevel[1],
-                                    color: '#F7CAAC',
-                                },
-                                {
-                                    from: @airTempYellowLevel[0],
-                                    to: @airTempYellowLevel[1],
-                                    color: '#FFF2CC',
-                                },
-                                {
-                                    from: @airTempGreenLevel[0],
-                                    to: @airTempGreenLevel[1],
-                                    color: '#E1EFD8',
-                                },
-                            ],
+                            alternateGridColor: null,
                         },
                         tooltip: {
                             headerFormat: '<b>{series.name}</b><br>',
