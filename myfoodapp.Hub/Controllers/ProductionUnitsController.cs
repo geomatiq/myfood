@@ -101,6 +101,8 @@ namespace myfoodapp.Hub.Controllers
             else
             {
                 ApplicationDbContext db = new ApplicationDbContext();
+                ViewBag.HasFahrenheitSetting = db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == currentUser).hasFahrenheitSetting == true;
+
                 var currentUserProductionUnit = new ProductionUnit();
 
                 var userProductionUnit = db.ProductionUnits.Include(p => p.owner.user).Where(p => p.owner.user.UserName == currentUser).ToList();
