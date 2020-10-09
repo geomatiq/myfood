@@ -100,6 +100,12 @@ namespace myfoodapp.Hub.Controllers
 
             var waterTempSensorValueSet = SensorValueManager.GetSensorValueSet(responseData.Id, SensorTypeEnum.waterTemperature, db);
             var pHSensorValueSet = SensorValueManager.GetSensorValueSet(responseData.Id, SensorTypeEnum.ph, db);
+            if (db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting == true && waterTempSensorValueSet.CurrentCaptureTime != "-")
+            {
+                waterTempSensorValueSet.AverageDayValue = Math.Round(waterTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                waterTempSensorValueSet.AverageHourValue = Math.Round(waterTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                waterTempSensorValueSet.CurrentValue = Math.Round(waterTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+            }
             var lst = new object();
             lst = new
             {
@@ -171,9 +177,15 @@ namespace myfoodapp.Hub.Controllers
                 var waterTempSensorValueSet = SensorValueManager.GetSensorValueSet(p.Id, SensorTypeEnum.waterTemperature, db);
 
                 var pHSensorValueSet = SensorValueManager.GetSensorValueSet(p.Id, SensorTypeEnum.ph, db);
-                
-                
-                    lst.Add(new
+                if (db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting == true && waterTempSensorValueSet.CurrentCaptureTime != "-")
+                {
+                    waterTempSensorValueSet.AverageDayValue = Math.Round(waterTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.AverageHourValue = Math.Round(waterTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.CurrentValue = Math.Round(waterTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+                }
+
+
+                lst.Add(new
                     {
                         PioneerCitizenName = p.owner.pioneerCitizenName,
                         PioneerCitizenNumber = p.owner.pioneerCitizenNumber,

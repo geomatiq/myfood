@@ -71,37 +71,7 @@
 
     function onSlideChangeEnd(ep)
     {
-        $.ajax({
-            url: "@Url.Action("GetProductionUnitMeasures", "Home")",
-            dataType: "json",
-        data: { id: ep.activeIndex },
-        type: "POST",
-        success: function (response) {
-            $("#CurrentPhValue").text(response.CurrentPhValue);
-            $("#CurrentPhCaptureTime").text(response.CurrentPhCaptureTime);
-            $("#AverageHourPhValue").text(response.AverageHourPhValue);
-            $("#AverageDayPhValue").text(response.AverageDayPhValue);
-            $("#LastDayPhCaptureTime").text(response.LastDayPhCaptureTime);
-
-            $("#CurrentWaterTempValue").text(response.CurrentWaterTempValue);
-            $("#CurrentWaterTempCaptureTime").text(response.CurrentWaterTempCaptureTime);
-            $("#AverageHourWaterTempValue").text(response.AverageHourWaterTempValue);
-            $("#AverageDayWaterTempValue").text(response.AverageDayWaterTempValue);
-            $("#LastDayWaterTempCaptureTime").text(response.LastDayWaterTempCaptureTime);
-
-            $("#CurrentAirTempValue").text(response.CurrentAirTempValue);
-            $("#CurrentAirTempCaptureTime").text(response.CurrentAirTempCaptureTime);
-            $("#AverageHourAirTempValue").text(response.AverageHourAirTempValue);
-            $("#AverageDayAirTempValue").text(response.AverageDayAirTempValue);
-            $("#LastDayAirTempCaptureTime").text(response.LastDayAirTempCaptureTime);
-
-            $("#CurrentHumidityValue").text(response.CurrentHumidityValue);
-            $("#CurrentHumidityCaptureTime").text(response.CurrentHumidityCaptureTime);
-            $("#AverageHourHumidityValue").text(response.AverageHourHumidityValue);
-            $("#AverageDayHumidityValue").text(response.AverageDayHumidityValue);
-            $("#LastDayHumidityCaptureTime").text(response.LastDayHumidityCaptureTime);
-        }
-    });
+        getProductionUnitMeasures(ep.activeIndex);
     }
 
     window.onClusterShow = function (latLang) {
@@ -135,6 +105,41 @@
     function onShapeMouseLeave(e) {
         e.shape.options.set("fill.opacity", 0.7);
     }
+
+    function getProductionUnitMeasures(id = 0) {
+        $.ajax({
+            url: "@Url.Action("GetProductionUnitMeasures", "Home")",
+            dataType: "json",
+            data: { id: id },
+            type: "POST",
+            success: function (response) {
+                $("#CurrentPhValue").text(response.CurrentPhValue);
+                $("#CurrentPhCaptureTime").text(response.CurrentPhCaptureTime);
+                $("#AverageHourPhValue").text(response.AverageHourPhValue);
+                $("#AverageDayPhValue").text(response.AverageDayPhValue);
+                $("#LastDayPhCaptureTime").text(response.LastDayPhCaptureTime);
+
+                $("#CurrentWaterTempValue").text(response.CurrentWaterTempValue);
+                $("#CurrentWaterTempCaptureTime").text(response.CurrentWaterTempCaptureTime);
+                $("#AverageHourWaterTempValue").text(response.AverageHourWaterTempValue);
+                $("#AverageDayWaterTempValue").text(response.AverageDayWaterTempValue);
+                $("#LastDayWaterTempCaptureTime").text(response.LastDayWaterTempCaptureTime);
+
+                $("#CurrentAirTempValue").text(response.CurrentAirTempValue);
+                $("#CurrentAirTempCaptureTime").text(response.CurrentAirTempCaptureTime);
+                $("#AverageHourAirTempValue").text(response.AverageHourAirTempValue);
+                $("#AverageDayAirTempValue").text(response.AverageDayAirTempValue);
+                $("#LastDayAirTempCaptureTime").text(response.LastDayAirTempCaptureTime);
+
+                $("#CurrentHumidityValue").text(response.CurrentHumidityValue);
+                $("#CurrentHumidityCaptureTime").text(response.CurrentHumidityCaptureTime);
+                $("#AverageHourHumidityValue").text(response.AverageHourHumidityValue);
+                $("#AverageDayHumidityValue").text(response.AverageDayHumidityValue);
+                $("#LastDayHumidityCaptureTime").text(response.LastDayHumidityCaptureTime);
+            }
+        });
+    }
+    getProductionUnitMeasures();
 
 </script>
 
@@ -193,7 +198,14 @@
             </div>
         </div>
         <div id="WaterTempContainer" class="col-md-3">
-            <h3 class="section-header" style="text-align:center;font-size:larger">[[[Water Temperature (°C)]]]</h3>
+            @if (ViewBag.HasFahrenheitSetting == true)
+            {
+                <h3 class="section-header" style="text-align:center;font-size:larger">[[[Water Temperature (°F)]]]</h3>
+            }
+            else
+            {
+                <h3 class="section-header" style="text-align:center;font-size:larger">[[[Water Temperature (°C)]]]</h3>
+            }
             <div class="sparkline-container">
                 <div style="margin: 3px;">
                     <div class="column-left">
@@ -215,7 +227,14 @@
             </div>
         </div>
         <div id="AirTempContainer" class="col-md-3">
-            <h3 class="section-header" style="text-align:center;font-size:larger">[[[Air Temperature (°C)]]]</h3>
+            @if (ViewBag.HasFahrenheitSetting == true)
+            {
+                <h3 class="section-header" style="text-align:center;font-size:larger">[[[Air Temperature (°F)]]]</h3>
+            }
+            else
+            {
+                <h3 class="section-header" style="text-align:center;font-size:larger">[[[Air Temperature (°C)]]]</h3>
+            }
             <div class="sparkline-container">
                 <div style="margin: 3px;">
                     <div class="column-left">

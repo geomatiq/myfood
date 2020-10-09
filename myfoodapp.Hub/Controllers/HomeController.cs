@@ -51,7 +51,9 @@ namespace myfoodapp.Hub.Controllers
 
 			var userId = UserManager.FindByName(currentUser).Id;
 			var isAdmin = this.UserManager.IsInRole(userId, "Admin");
-			if (isAdmin)
+            ViewBag.HasFahrenheitSetting = db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting;
+
+            if (isAdmin)
 			{
 				return View();
 			}
@@ -117,6 +119,21 @@ namespace myfoodapp.Hub.Controllers
             var waterTempSensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.waterTemperature, db);
             var airTempSensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.airTemperature, db);
             var humiditySensorValueSet = SensorValueManager.GetSensorValueSet(currentProductionUnit.Id, SensorTypeEnum.humidity, db);
+            if (db.ProductionUnitOwners.FirstOrDefault(o => o.user.UserName == this.User.Identity.Name).hasFahrenheitSetting == true)
+            {
+                if (waterTempSensorValueSet.CurrentCaptureTime != "-")
+                {
+                    waterTempSensorValueSet.AverageDayValue = Math.Round(waterTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.AverageHourValue = Math.Round(waterTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                    waterTempSensorValueSet.CurrentValue = Math.Round(waterTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+                }
+                if (airTempSensorValueSet.CurrentCaptureTime != "-")
+                {
+                    airTempSensorValueSet.AverageDayValue = Math.Round(airTempSensorValueSet.AverageDayValue * 9 / 5, 1) + 32;
+                    airTempSensorValueSet.AverageHourValue = Math.Round(airTempSensorValueSet.AverageHourValue * 9 / 5, 1) + 32;
+                    airTempSensorValueSet.CurrentValue = Math.Round(airTempSensorValueSet.CurrentValue * 9 / 5, 1) + 32;
+                }
+            }
 
             return Json(new
             {

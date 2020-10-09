@@ -1,10 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-
-"POT-Creation-Date: 2020-09-22 15:18+02:00\n"
-"PO-Revision-Date: 2020-09-22 15:18+02:00\n"
-
+"POT-Creation-Date: 2020-10-09 12:32+03:00\n"
+"PO-Revision-Date: 2020-10-09 12:32+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,8 +46,8 @@ msgstr ""
 msgid "Add calcium"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:853
-#: Views\ProductionUnits\Details.cshtml:1077
+#: Views\ProductionUnits\Details.cshtml:1154
+#: Views\ProductionUnits\Details.cshtml:1393
 #: Views\ProductionUnits\UserUnit.cshtml:753
 #: Views\ProductionUnits\UserUnit.cshtml:959
 msgid "Add Event"
@@ -387,10 +385,15 @@ msgstr ""
 msgid "Air Temp"
 msgstr ""
 
-#: Views\Home\Index.cshtml:218
-#: Views\ProductionUnits\Details.cshtml:920
+#: Views\Home\Index.cshtml:236
+#: Views\ProductionUnits\Details.cshtml:1235
 #: Views\ProductionUnits\UserUnit.cshtml:829
 msgid "Air Temperature (°C)"
+msgstr ""
+
+#: Views\Home\Index.cshtml:232
+#: Views\ProductionUnits\Details.cshtml:1231
+msgid "Air Temperature (°F)"
 msgstr ""
 
 #: Migrations\Configuration.cs:162
@@ -406,6 +409,10 @@ msgstr ""
 
 #: Views\Log\Index.cshtml:9
 msgid "Application Logs"
+msgstr ""
+
+#: Views\ProductionUnits\Details.cshtml:19
+msgid "Apr"
 msgstr ""
 
 #: Business\GrowingModel.cs:20
@@ -486,6 +493,10 @@ msgstr ""
 msgid "Asc"
 msgstr ""
 
+#: Views\ProductionUnits\Details.cshtml:23
+msgid "Aug"
+msgstr ""
+
 #: Business\GrowingModel.cs:24
 #: Content\GrowingModelv1.json:5055
 #: Migrations\Configuration.cs:190
@@ -502,28 +513,28 @@ msgstr ""
 msgid "Average"
 msgstr ""
 
-#: Views\Home\Index.cshtml:183
 #: Views\Home\Index.cshtml:188
-#: Views\Home\Index.cshtml:205
-#: Views\Home\Index.cshtml:210
-#: Views\Home\Index.cshtml:227
-#: Views\Home\Index.cshtml:232
-#: Views\Home\Index.cshtml:249
-#: Views\Home\Index.cshtml:254
+#: Views\Home\Index.cshtml:193
+#: Views\Home\Index.cshtml:217
+#: Views\Home\Index.cshtml:222
+#: Views\Home\Index.cshtml:246
+#: Views\Home\Index.cshtml:251
+#: Views\Home\Index.cshtml:268
+#: Views\Home\Index.cshtml:273
 #: Views\InteractiveMap\Index.cshtml:364
 #: Views\InteractiveMap\Index.cshtml:369
 #: Views\InteractiveMap\Index.cshtml:388
 #: Views\InteractiveMap\Index.cshtml:393
-#: Views\ProductionUnits\Details.cshtml:874
-#: Views\ProductionUnits\Details.cshtml:879
-#: Views\ProductionUnits\Details.cshtml:901
-#: Views\ProductionUnits\Details.cshtml:906
-#: Views\ProductionUnits\Details.cshtml:929
-#: Views\ProductionUnits\Details.cshtml:934
-#: Views\ProductionUnits\Details.cshtml:955
-#: Views\ProductionUnits\Details.cshtml:960
-#: Views\ProductionUnits\Details.cshtml:982
-#: Views\ProductionUnits\Details.cshtml:987
+#: Views\ProductionUnits\Details.cshtml:1176
+#: Views\ProductionUnits\Details.cshtml:1181
+#: Views\ProductionUnits\Details.cshtml:1210
+#: Views\ProductionUnits\Details.cshtml:1215
+#: Views\ProductionUnits\Details.cshtml:1245
+#: Views\ProductionUnits\Details.cshtml:1250
+#: Views\ProductionUnits\Details.cshtml:1271
+#: Views\ProductionUnits\Details.cshtml:1276
+#: Views\ProductionUnits\Details.cshtml:1298
+#: Views\ProductionUnits\Details.cshtml:1303
 #: Views\ProductionUnits\UserUnit.cshtml:782
 #: Views\ProductionUnits\UserUnit.cshtml:787
 #: Views\ProductionUnits\UserUnit.cshtml:809
@@ -577,7 +588,7 @@ msgstr ""
 msgid "Beetroot"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1032
+#: Views\ProductionUnits\Details.cshtml:1348
 #: Views\ProductionUnits\UserUnit.cshtml:914
 msgid "Best to contact:"
 msgstr ""
@@ -649,12 +660,12 @@ msgid "Call Pioneer"
 msgstr ""
 
 #: Views\Events\Index.cshtml:131
-#: Views\ProductionUnits\Details.cshtml:1106
+#: Views\ProductionUnits\Details.cshtml:1422
 #: Views\ProductionUnits\UserUnit.cshtml:988
 msgid "Cancel"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:973
+#: Views\ProductionUnits\Details.cshtml:1289
 msgid "Carbon Dioxide (ppm)"
 msgstr ""
 
@@ -726,7 +737,7 @@ msgstr ""
 msgid "Clogged tubes"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1050
+#: Views\ProductionUnits\Details.cshtml:1366
 #: Views\ProductionUnits\UserUnit.cshtml:932
 msgid "CO2 SAVED"
 msgstr ""
@@ -796,17 +807,17 @@ msgstr ""
 msgid "Cucumber"
 msgstr ""
 
-#: Views\Home\Index.cshtml:178
-#: Views\Home\Index.cshtml:200
-#: Views\Home\Index.cshtml:222
-#: Views\Home\Index.cshtml:244
+#: Views\Home\Index.cshtml:183
+#: Views\Home\Index.cshtml:212
+#: Views\Home\Index.cshtml:241
+#: Views\Home\Index.cshtml:263
 #: Views\InteractiveMap\Index.cshtml:359
 #: Views\InteractiveMap\Index.cshtml:383
-#: Views\ProductionUnits\Details.cshtml:869
-#: Views\ProductionUnits\Details.cshtml:896
-#: Views\ProductionUnits\Details.cshtml:924
-#: Views\ProductionUnits\Details.cshtml:950
-#: Views\ProductionUnits\Details.cshtml:977
+#: Views\ProductionUnits\Details.cshtml:1171
+#: Views\ProductionUnits\Details.cshtml:1205
+#: Views\ProductionUnits\Details.cshtml:1240
+#: Views\ProductionUnits\Details.cshtml:1266
+#: Views\ProductionUnits\Details.cshtml:1293
 #: Views\ProductionUnits\UserUnit.cshtml:777
 #: Views\ProductionUnits\UserUnit.cshtml:804
 #: Views\ProductionUnits\UserUnit.cshtml:833
@@ -839,6 +850,10 @@ msgstr ""
 msgid "Dead fish"
 msgstr ""
 
+#: Views\ProductionUnits\Details.cshtml:27
+msgid "Dec"
+msgstr ""
+
 #: Business\GrowingModel.cs:28
 #: Content\GrowingModelv1.json:7939
 #: Migrations\Configuration.cs:194
@@ -859,6 +874,11 @@ msgstr ""
 
 #: Migrations\Configuration.cs:95
 msgid "Development Kit"
+msgstr ""
+
+#: Viewmodels\AccountViewModels.cs:53
+#: Views\MyInfo\Update.cshtml:130
+msgid "Display the temperature into Farenheit"
 msgstr ""
 
 #: Business\GrowingModel.cs:33
@@ -1028,9 +1048,13 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1030
+#: Views\ProductionUnits\Details.cshtml:1346
 #: Views\ProductionUnits\UserUnit.cshtml:912
 msgid "Email:"
+msgstr ""
+
+#: Views\ProductionUnits\Details.cshtml:1157
+msgid "Enable / Disable Range"
 msgstr ""
 
 #: Viewmodels\AccountViewModels.cs:48
@@ -1045,25 +1069,26 @@ msgstr ""
 msgid "Equipment"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1045
+#: Views\ProductionUnits\Details.cshtml:1361
 #: Views\ProductionUnits\UserUnit.cshtml:927
 msgid "EST. PROD."
 msgstr ""
 
 #: Views\Events\Manage.cshtml:48
-#: Views\ProductionUnits\Details.cshtml:856
-#: Views\ProductionUnits\Details.cshtml:860
+#: Views\ProductionUnits\Details.cshtml:1158
+#: Views\ProductionUnits\Details.cshtml:1162
 #: Views\ProductionUnits\UserUnit.cshtml:756
 #: Views\ProductionUnits\UserUnit.cshtml:767
 msgid "Export CSV"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:268
+#: Views\ProductionUnits\Details.cshtml:371
+#: Views\ProductionUnits\Details.cshtml:577
 #: Views\ProductionUnits\UserUnit.cshtml:270
 msgid "External Air Temp"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:360
+#: Views\ProductionUnits\Details.cshtml:661
 #: Views\ProductionUnits\UserUnit.cshtml:361
 msgid "External Humidity"
 msgstr ""
@@ -1094,6 +1119,10 @@ msgstr ""
 
 #: Migrations\Configuration.cs:94
 msgid "Farm"
+msgstr ""
+
+#: Views\ProductionUnits\Details.cshtml:17
+msgid "Feb"
 msgstr ""
 
 #: Business\GrowingModel.cs:18
@@ -1492,13 +1521,13 @@ msgstr ""
 msgid "High"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:352
+#: Views\ProductionUnits\Details.cshtml:653
 #: Views\ProductionUnits\UserUnit.cshtml:353
 msgid "Humidity"
 msgstr ""
 
-#: Views\Home\Index.cshtml:240
-#: Views\ProductionUnits\Details.cshtml:946
+#: Views\Home\Index.cshtml:259
+#: Views\ProductionUnits\Details.cshtml:1262
 #: Views\ProductionUnits\UserUnit.cshtml:856
 msgid "Humidity (%)"
 msgstr ""
@@ -1606,6 +1635,10 @@ msgstr ""
 msgid "Issue"
 msgstr ""
 
+#: Views\ProductionUnits\Details.cshtml:16
+msgid "Jan"
+msgstr ""
+
 #: Business\GrowingModel.cs:17
 #: Content\GrowingModelv1.json:8
 #: Migrations\Configuration.cs:183
@@ -1615,12 +1648,14 @@ msgstr ""
 #: Business\GrowingModel.cs:23
 #: Content\GrowingModelv1.json:4334
 #: Migrations\Configuration.cs:189
+#: Views\ProductionUnits\Details.cshtml:22
 msgid "July"
 msgstr ""
 
 #: Business\GrowingModel.cs:22
 #: Content\GrowingModelv1.json:3613
 #: Migrations\Configuration.cs:188
+#: Views\ProductionUnits\Details.cshtml:21
 msgid "June"
 msgstr ""
 
@@ -1661,15 +1696,15 @@ msgstr ""
 msgid "Last Month"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:729
-#: Views\ProductionUnits\Details.cshtml:842
+#: Views\ProductionUnits\Details.cshtml:1030
+#: Views\ProductionUnits\Details.cshtml:1143
 #: Views\ProductionUnits\UserUnit.cshtml:631
 #: Views\ProductionUnits\UserUnit.cshtml:742
 msgid "Last Three Months"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:721
-#: Views\ProductionUnits\Details.cshtml:841
+#: Views\ProductionUnits\Details.cshtml:1022
+#: Views\ProductionUnits\Details.cshtml:1142
 #: Views\ProductionUnits\UserUnit.cshtml:623
 #: Views\ProductionUnits\UserUnit.cshtml:741
 msgid "Last Week"
@@ -1731,7 +1766,7 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1033
+#: Views\ProductionUnits\Details.cshtml:1349
 #: Views\ProductionUnits\UserUnit.cshtml:915
 msgid "Location:"
 msgstr ""
@@ -1745,7 +1780,7 @@ msgstr ""
 msgid "Log off"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1080
+#: Views\ProductionUnits\Details.cshtml:1396
 #: Views\ProductionUnits\UserUnit.cshtml:962
 msgid "Log your Actions / Events here"
 msgstr ""
@@ -1799,7 +1834,7 @@ msgstr ""
 msgid "Manage Recognition Records from your Production Units"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:855
+#: Views\ProductionUnits\Details.cshtml:1156
 #: Views\ProductionUnits\UserUnit.cshtml:755
 msgid "Manage Unit"
 msgstr ""
@@ -1809,6 +1844,10 @@ msgstr ""
 #: Views\Admin\Index.cshtml:24
 #: Views\ProductionUnits\Index.cshtml:65
 msgid "Manage Users"
+msgstr ""
+
+#: Views\ProductionUnits\Details.cshtml:18
+msgid "Mar"
 msgstr ""
 
 #: Business\GrowingModel.cs:19
@@ -1824,6 +1863,7 @@ msgstr ""
 #: Business\GrowingModel.cs:21
 #: Content\GrowingModelv1.json:2892
 #: Migrations\Configuration.cs:187
+#: Views\ProductionUnits\Details.cshtml:20
 msgid "May"
 msgstr ""
 
@@ -2036,14 +2076,14 @@ msgid "Need Support?"
 msgstr ""
 
 #: Views\Home\Index.cshtml:23
-#: Views\Home\Index.cshtml:300
+#: Views\Home\Index.cshtml:319
 #: Views\InteractiveMap\Index.cshtml:342
 #: Views\InteractiveMap\Index.cshtml:404
 msgid "Network Info"
 msgstr ""
 
 #: Views\Home\Index.cshtml:32
-#: Views\Home\Index.cshtml:265
+#: Views\Home\Index.cshtml:284
 msgid "Network Status"
 msgstr ""
 
@@ -2149,10 +2189,18 @@ msgstr ""
 msgid "Notification Email"
 msgstr ""
 
+#: Views\ProductionUnits\Details.cshtml:26
+msgid "Nov"
+msgstr ""
+
 #: Business\GrowingModel.cs:27
 #: Content\GrowingModelv1.json:7218
 #: Migrations\Configuration.cs:193
 msgid "November"
+msgstr ""
+
+#: Views\ProductionUnits\Details.cshtml:25
+msgid "Oct"
 msgstr ""
 
 #: Business\GrowingModel.cs:26
@@ -2161,12 +2209,12 @@ msgstr ""
 msgid "October"
 msgstr ""
 
-#: Controllers\HomeController.cs:252
+#: Controllers\HomeController.cs:269
 #: Migrations\Configuration.cs:114
 msgid "Offline"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1107
+#: Views\ProductionUnits\Details.cshtml:1423
 #: Views\ProductionUnits\UserUnit.cshtml:989
 msgid "OK"
 msgstr ""
@@ -2176,8 +2224,8 @@ msgstr ""
 msgid "Old Password"
 msgstr ""
 
-#: Controllers\HomeController.cs:250
-#: Controllers\InteractiveMapController.cs:246
+#: Controllers\HomeController.cs:267
+#: Controllers\InteractiveMapController.cs:258
 msgid "On Maintenance"
 msgstr ""
 
@@ -2218,15 +2266,15 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: Views\Home\Index.cshtml:185
-#: Views\Home\Index.cshtml:207
-#: Views\Home\Index.cshtml:229
-#: Views\Home\Index.cshtml:251
+#: Views\Home\Index.cshtml:190
+#: Views\Home\Index.cshtml:219
+#: Views\Home\Index.cshtml:248
+#: Views\Home\Index.cshtml:270
 #: Views\InteractiveMap\Index.cshtml:366
 #: Views\InteractiveMap\Index.cshtml:390
-#: Views\ProductionUnits\Details.cshtml:876
-#: Views\ProductionUnits\Details.cshtml:903
-#: Views\ProductionUnits\Details.cshtml:931
+#: Views\ProductionUnits\Details.cshtml:1178
+#: Views\ProductionUnits\Details.cshtml:1212
+#: Views\ProductionUnits\Details.cshtml:1247
 #: Views\ProductionUnits\UserUnit.cshtml:784
 #: Views\ProductionUnits\UserUnit.cshtml:811
 #: Views\ProductionUnits\UserUnit.cshtml:840
@@ -2318,8 +2366,8 @@ msgstr ""
 msgid "Pepper"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1047
-#: Views\ProductionUnits\Details.cshtml:1052
+#: Views\ProductionUnits\Details.cshtml:1363
+#: Views\ProductionUnits\Details.cshtml:1368
 #: Views\ProductionUnits\UserUnit.cshtml:929
 #: Views\ProductionUnits\UserUnit.cshtml:934
 msgid "PER MONTH"
@@ -2345,7 +2393,7 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1040
+#: Views\ProductionUnits\Details.cshtml:1356
 #: Views\ProductionUnits\UserUnit.cshtml:922
 msgid "PERFORMANCE"
 msgstr ""
@@ -2766,12 +2814,12 @@ msgid "Pest"
 msgstr ""
 
 #: Views\InteractiveMap\Index.cshtml:355
-#: Views\ProductionUnits\Details.cshtml:865
+#: Views\ProductionUnits\Details.cshtml:1167
 #: Views\ProductionUnits\UserUnit.cshtml:773
 msgid "pH"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1031
+#: Views\ProductionUnits\Details.cshtml:1347
 #: Views\ProductionUnits\UserUnit.cshtml:913
 msgid "Phone:"
 msgstr ""
@@ -2780,7 +2828,7 @@ msgstr ""
 msgid "Pioneer Citizen Map"
 msgstr ""
 
-#: Views\Home\Index.cshtml:148
+#: Views\Home\Index.cshtml:153
 msgid "Pioneer Citizen Network"
 msgstr ""
 
@@ -2808,7 +2856,7 @@ msgstr ""
 msgid "Please select more detailed option"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1085
+#: Views\ProductionUnits\Details.cshtml:1401
 msgid "Please select More detailed Option"
 msgstr ""
 
@@ -2840,11 +2888,11 @@ msgstr ""
 msgid "Production lost"
 msgstr ""
 
-#: Controllers\ProductionUnitsController.cs:292
+#: Controllers\ProductionUnitsController.cs:293
 msgid "Production Unit already in use"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:836
+#: Views\ProductionUnits\Details.cshtml:1137
 #: Views\ProductionUnits\UserUnit.cshtml:735
 msgid "Production Unit Details"
 msgstr ""
@@ -2965,7 +3013,7 @@ msgstr ""
 msgid "Satify"
 msgstr ""
 
-#: Views\MyInfo\Update.cshtml:129
+#: Views\MyInfo\Update.cshtml:138
 msgid "Save"
 msgstr ""
 
@@ -3042,14 +3090,18 @@ msgstr ""
 msgid "sensor type"
 msgstr ""
 
+#: Views\ProductionUnits\Details.cshtml:24
+msgid "Sept"
+msgstr ""
+
 #: Business\GrowingModel.cs:25
 #: Content\GrowingModelv1.json:5776
 #: Migrations\Configuration.cs:191
 msgid "September"
 msgstr ""
 
-#: Controllers\HomeController.cs:248
-#: Controllers\InteractiveMapController.cs:244
+#: Controllers\HomeController.cs:265
+#: Controllers\InteractiveMapController.cs:256
 #: Migrations\Configuration.cs:110
 msgid "Setup Planned"
 msgstr ""
@@ -3066,7 +3118,7 @@ msgstr ""
 msgid "Sigfox connectivity kit"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1055
+#: Views\ProductionUnits\Details.cshtml:1371
 #: Views\ProductionUnits\UserUnit.cshtml:937
 msgid "SINCE"
 msgstr ""
@@ -3496,7 +3548,7 @@ msgstr ""
 msgid "status"
 msgstr ""
 
-#: Controllers\HomeController.cs:251
+#: Controllers\HomeController.cs:268
 #: Migrations\Configuration.cs:113
 msgid "Stopped"
 msgstr ""
@@ -3540,8 +3592,8 @@ msgstr ""
 msgid "Sweet Potatoes"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:712
-#: Views\ProductionUnits\Details.cshtml:840
+#: Views\ProductionUnits\Details.cshtml:1013
+#: Views\ProductionUnits\Details.cshtml:1141
 #: Views\ProductionUnits\UserUnit.cshtml:615
 #: Views\ProductionUnits\UserUnit.cshtml:740
 msgid "This Last Day"
@@ -3723,7 +3775,7 @@ msgstr ""
 msgid "TOTAL<br />CO2 SAVED<br />PER MONTH"
 msgstr ""
 
-#: Views\Home\Index.cshtml:303
+#: Views\Home\Index.cshtml:322
 #: Views\InteractiveMap\Index.cshtml:407
 msgid "TOTAL<br />CONNECTED <br />PROD. UNITS"
 msgstr ""
@@ -3732,11 +3784,11 @@ msgstr ""
 msgid "TOTAL<br />EST. PROD. <br />PER MONTH"
 msgstr ""
 
-#: Views\Home\Index.cshtml:307
+#: Views\Home\Index.cshtml:326
 msgid "TOTAL<br />INCIDENT(S) <br />LAST MONTH"
 msgstr ""
 
-#: Views\Home\Index.cshtml:311
+#: Views\Home\Index.cshtml:330
 msgid "TOTAL<br />INCIDENT(S) <br />LAST YEAR"
 msgstr ""
 
@@ -3766,11 +3818,11 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: Controllers\InteractiveMapController.cs:245
+#: Controllers\InteractiveMapController.cs:257
 msgid "Up & Running"
 msgstr ""
 
-#: Controllers\HomeController.cs:249
+#: Controllers\HomeController.cs:266
 #: Migrations\Configuration.cs:111
 msgid "Up and Running"
 msgstr ""
@@ -3801,12 +3853,12 @@ msgstr ""
 msgid "Vegetable management"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:854
+#: Views\ProductionUnits\Details.cshtml:1155
 #: Views\ProductionUnits\UserUnit.cshtml:754
 msgid "View Events"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:844
+#: Views\ProductionUnits\Details.cshtml:1145
 #: Views\ProductionUnits\UserUnit.cshtml:744
 msgid "View Info"
 msgstr ""
@@ -3815,8 +3867,8 @@ msgstr ""
 msgid "View Logs"
 msgstr ""
 
-#: Controllers\HomeController.cs:247
-#: Controllers\InteractiveMapController.cs:243
+#: Controllers\HomeController.cs:264
+#: Controllers\InteractiveMapController.cs:255
 #: Migrations\Configuration.cs:109
 msgid "Wait Confirm."
 msgstr ""
@@ -3847,23 +3899,29 @@ msgstr ""
 msgid "Water purge"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:181
+#: Views\ProductionUnits\Details.cshtml:265
+#: Views\ProductionUnits\Details.cshtml:509
 #: Views\ProductionUnits\UserUnit.cshtml:183
 msgid "Water Temp"
 msgstr ""
 
-#: Views\Home\Index.cshtml:196
+#: Views\Home\Index.cshtml:207
 #: Views\InteractiveMap\Index.cshtml:379
-#: Views\ProductionUnits\Details.cshtml:892
+#: Views\ProductionUnits\Details.cshtml:1200
 #: Views\ProductionUnits\UserUnit.cshtml:800
 msgid "Water Temperature (°C)"
+msgstr ""
+
+#: Views\Home\Index.cshtml:203
+#: Views\ProductionUnits\Details.cshtml:1196
+msgid "Water Temperature (°F)"
 msgstr ""
 
 #: Migrations\Configuration.cs:173
 msgid "Weekend"
 msgstr ""
 
-#: Views\ProductionUnits\Details.cshtml:1057
+#: Views\ProductionUnits\Details.cshtml:1373
 #: Views\ProductionUnits\UserUnit.cshtml:939
 msgid "WEEKS"
 msgstr ""
@@ -4120,6 +4178,15 @@ msgstr ""
 #~ msgid "Air Humidity value is out of range : {0}"
 #~ msgstr ""
 
+#~ msgid "Air Temperature (@if (ViewBag.HasFahrenheitSetting == true) {°C} else {°F}"
+#~ msgstr ""
+
+#~ msgid "Air Temperature °C"
+#~ msgstr ""
+
+#~ msgid "Air Temperature °F"
+#~ msgstr ""
+
 #~ msgid "App Logs"
 #~ msgstr ""
 
@@ -4235,6 +4302,9 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "It's too hot inside ({0}°C) : {0} - Open the doors and add a shadows cloths"
+#~ msgstr ""
+
+#~ msgid "Jun"
 #~ msgstr ""
 
 #~ msgid "Manage Production Unit Events"
