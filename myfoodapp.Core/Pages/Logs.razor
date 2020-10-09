@@ -2,21 +2,27 @@
 @inject IJSRuntime js
 
 <div class="container" style="padding: 20px;">
-    <div class="row">    
-        <div class="col">
-        <h1>Current Logs</h1>
-            <RadzenTextArea Disabled="true" @bind-Value="@value"  Style="margin-bottom: 20px; width: 100%; height: 600px" />
-        </div>
-        <div class="col">
-        <h1>Manage Logs</h1>
-            <RadzenButton Click="@((args) => ClearLogsClick(args))" Text="Clear Logs" style="width:100%; margin:10px"/>
-            <RadzenButton Click="@((args) => DownloadLogsClick(args))" Text="Download Logs" style="width:100%; margin:10px"/>
-        </div>
+    <div class="row">   
+        <SpinLoader IsLoading="@isLoading" Center=true>
+            <ContentTemplate>
+                <div class="col">
+                <h1>Current Logs</h1>
+                    <RadzenTextArea Disabled="true" @bind-Value="@value"  Style="margin-bottom: 20px; width: 100%; height: 600px" />
+                </div>
+                <div class="col">
+                <h1>Manage Logs</h1>
+                    <RadzenButton Click="@((args) => ClearLogsClick(args))" Text="Clear Logs" style="width:100%; margin:10px"/>
+                    <RadzenButton Click="@((args) => DownloadLogsClick(args))" Text="Download Logs" style="width:100%; margin:10px"/>
+                </div>
+            </ContentTemplate>
+        </SpinLoader> 
+
     </div>
 </div>
 
 @code {
     string value;
+    bool isLoading = false;
 
     protected override void OnInitialized()
     {
@@ -57,10 +63,13 @@
 
     }
 
-    void ClearLogsClick(MouseEventArgs args)
+    async Task ClearLogsClick(MouseEventArgs args)
     {
         var lg = LogManager.GetInstance;
         lg.AppendLog(Log.CreateLog("Clear Logs started", LogType.Information));
+
+        isLoading = true;
+        await Task.Delay(2000);
 
         var mesureBackgroundTask = MeasureBackgroundTask.GetInstance;
 
@@ -74,8 +83,11 @@
             try
             {
                 var strLogs = "sudo rm -rf /home/pi/share/myfoodapp.Core/Logs".Bash();
-                mesureBackgroundTask.Run();
+
                 value = String.Empty;
+                mesureBackgroundTask.Run();
+
+                StateHasChanged();
             }
             catch (Exception ex)
             {
@@ -90,11 +102,17 @@
         mesureBackgroundTask.Completed += handler;
         mesureBackgroundTask.Stop();
 
+        await Task.Delay(3000);
+        isLoading = false;
+        
         StateHasChanged();
     }
 
     Task DownloadLogsClick(MouseEventArgs args)
     {
+        if(value == null)
+            return null;
+
         var bytes = System.Text.Encoding.UTF8.GetBytes(value);
         return FileUtil.SaveAs(js, "Logs.txt", bytes);
     }
