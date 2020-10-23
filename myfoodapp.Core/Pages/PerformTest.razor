@@ -35,6 +35,8 @@
             {
                 SigfoxIntegrationTestingManager instance = new SigfoxIntegrationTestingManager();
                 instance.Run();
+
+                Task.Delay(5000);
                 
                 mesureBackgroundTask.Run();
             }

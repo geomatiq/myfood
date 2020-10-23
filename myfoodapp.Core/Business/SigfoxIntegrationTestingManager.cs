@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using myfoodapp.Core.Common;
 using myfoodapp.Core.Model;
+using System.Net.NetworkInformation;
 
 namespace myfoodapp.Core.Business
 {
@@ -25,6 +26,7 @@ namespace myfoodapp.Core.Business
             var captureDateTime = DateTime.Now;
 
             var clockManager = ClockManager.GetInstance;
+            var userSettings = userSettingsManager.GetUserSettings();
 
             lg.AppendLog(Log.CreateLog("[UTEST00] Sigfox Integration Test start", LogType.Information));
             if (clockManager != null)
@@ -44,12 +46,15 @@ namespace myfoodapp.Core.Business
 
             lg.AppendLog(Log.CreateLog("[UTEST01] Sigfox Init started", LogType.Information));
 
-            var taskSigfox = Task.Run(async () => 
-                                    { 
-                                        sigfoxManager.InitInterface(); 
-                                        await Task.Delay(1000);
-                                    });
-            taskSigfox.Wait();
+            if(userSettings.connectivityType == ConnectivityType.Sigfox)
+            {
+                var taskSigfox = Task.Run(async () => 
+                                        { 
+                                            sigfoxManager.InitInterface(); 
+                                            await Task.Delay(1000);
+                                        });
+                taskSigfox.Wait();
+            }
 
             sensorManager = AtlasSensorManager.GetInstance;
 
@@ -180,21 +185,31 @@ namespace myfoodapp.Core.Business
 
             watchMesures.Restart();
 
-            string sigFoxSignature = String.Empty;
+            string messageSignature = String.Empty;
 
             var taskSig = Task.Run(async () =>
                 {
-                    sigFoxSignature = await databaseModel.GetLastMesureSignature();
+                    messageSignature = await databaseModel.GetLastMesureSignature();
                 });
-                taskSig.Wait();
+            taskSig.Wait();
 
-                var userSettings = userSettingsManager.GetUserSettings();
+            if (userSettings.connectivityType == ConnectivityType.Wifi && NetworkInterface.GetIsNetworkAvailable())
+            {
+                Task.Run(async () =>
+                {
+                    await HttpClientHelper.SendMessage(userSettings.hubMessageAPI, 
+                                                        messageSignature, 
+                                                        userSettings.productionSiteId);
+                }).Wait();                                       
+            }
+            else
+            {
+                sigfoxManager.SendMessage(messageSignature, userSettings.sigfoxVersion);
+            }
 
-                sigfoxManager.SendMessage(sigFoxSignature, userSettings.sigfoxVersion);
-
-                lg.AppendLog(Log.CreateLog(String.Format("[UTEST31] Data sent to Azure via Sigfox in {0} sec.", watchMesures.ElapsedMilliseconds / 1000), LogType.System));
-                }
-
+            lg.AppendLog(Log.CreateLog(String.Format("[UTEST31] Data sent to Azure via Sigfox in {0} sec.", watchMesures.ElapsedMilliseconds / 1000), LogType.System));
+            
+            }
         catch (Exception ex)
         {
             lg.AppendLog(Log.CreateErrorLog("Exception on Sigfox Integration Test", ex));

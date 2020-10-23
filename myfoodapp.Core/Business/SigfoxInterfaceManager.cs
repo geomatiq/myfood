@@ -34,6 +34,8 @@ namespace myfoodapp.Core.Business
         private string isOnlineATCommand = "AT\r";
         private string setEchoOFFATCommand = "ATE0\r";
 
+        string strStatus = string.Empty;
+
         private SigfoxInterfaceManager()
         {         
         }
@@ -71,15 +73,11 @@ namespace myfoodapp.Core.Business
 
                 serialPort.Open(); 
 
-                string strStatus = string.Empty;
-
                 serialPort.WriteLine(isOnlineATCommand);  
 
                 Task.Delay(1000).Wait();
 
                 strStatus = serialPort.ReadExisting();
-
-                Console.WriteLine(strStatus); 
 
                 isInitialized = true;
             }
@@ -90,7 +88,7 @@ namespace myfoodapp.Core.Business
             }
             finally
             {               
-                lg.AppendLog(Log.CreateLog(String.Format("Sigfox Interface online in {0} sec.", watch.ElapsedMilliseconds / 1000), LogType.System));
+                lg.AppendLog(Log.CreateLog(String.Format("Sigfox Interface online in {0} sec. - {0}", watch.ElapsedMilliseconds / 1000, strStatus), LogType.System));
                 watch.Stop();
             }
         }

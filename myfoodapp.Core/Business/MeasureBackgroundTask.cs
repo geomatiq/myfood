@@ -199,10 +199,12 @@ namespace myfoodapp.Core.Business
 
                                 if (capturedValue > 0 && capturedValue < 80)
                                 {
-                                    messageSignature[4] = '0';
-                                    messageSignature[5] = capturedValue.ToString()[0];
-                                    messageSignature[6] = capturedValue.ToString()[1];
-                                    messageSignature[7] = capturedValue.ToString()[3];
+                                    var textValue = capturedValue.ToString("000.0").Replace(".", "").Replace("-", "B"); 
+                                    
+                                    messageSignature[4] = textValue.ToString()[0];
+                                    messageSignature[5] = textValue.ToString()[1];
+                                    messageSignature[6] = textValue.ToString()[2];
+                                    messageSignature[7] = textValue.ToString()[3];
 
                                     if (!userSettings.isDiagnosticModeEnable)
                                     sensorManager.SetWaterTemperatureForPHSensor(capturedValue);
@@ -240,10 +242,12 @@ namespace myfoodapp.Core.Business
 
                                 if (capturedValue > 1 && capturedValue < 12)
                                 {
-                                    messageSignature[0] = '0';
-                                    messageSignature[1] = '0';
-                                    messageSignature[2] = capturedValue.ToString()[0];
-                                    messageSignature[3] = capturedValue.ToString()[2];
+                                    var textValue = capturedValue.ToString("000.0").Replace(".", "").Replace("-", "B"); 
+                                    
+                                    messageSignature[0] = textValue.ToString()[0];
+                                    messageSignature[1] = textValue.ToString()[1];
+                                    messageSignature[2] = textValue.ToString()[2];
+                                    messageSignature[3] = textValue.ToString()[3];
 
                                     var task = Task.Run(async () =>
                                     {
@@ -287,10 +291,12 @@ namespace myfoodapp.Core.Business
                                              await Task.Delay(1000);
                                              await databaseModel.AddMesure(captureDateTime, capturedValue, SensorTypeEnum.airTemperature);
                                             
-                                             messageSignature[16] = '0';
-                                             messageSignature[17] = capturedValue.ToString()[0];
-                                             messageSignature[18] = capturedValue.ToString()[1];
-                                             messageSignature[19] = capturedValue.ToString()[3];
+                                             var textValue = capturedValue.ToString("000.0").Replace(".", "").Replace("-", "B"); 
+                                    
+                                             messageSignature[16] = textValue.ToString()[0];
+                                             messageSignature[17] = textValue.ToString()[1];
+                                             messageSignature[18] = textValue.ToString()[2];
+                                             messageSignature[19] = textValue.ToString()[3];
 
                                              if (userSettings.isDiagnosticModeEnable)
                                                  lg.AppendLog(Log.CreateLog(String.Format("Air Temperature captured : {0}", capturedValue), LogType.Information));
@@ -301,10 +307,12 @@ namespace myfoodapp.Core.Business
                                              await Task.Delay(1000);    
                                              await databaseModel.AddMesure(captureDateTime, capturedValue, SensorTypeEnum.humidity);
 
-                                             messageSignature[20] = '0';
-                                             messageSignature[21] = capturedValue.ToString()[0];
-                                             messageSignature[22] = capturedValue.ToString()[1];
-                                             messageSignature[23] = capturedValue.ToString()[3];
+                                             textValue = capturedValue.ToString("000.0").Replace(".", "").Replace("-", "B"); 
+                                             
+                                             messageSignature[20] = textValue.ToString()[0];
+                                             messageSignature[21] = textValue.ToString()[1];
+                                             messageSignature[22] = textValue.ToString()[2];
+                                             messageSignature[23] = textValue.ToString()[3];
 
                                              if (userSettings.isDiagnosticModeEnable)
                                                  lg.AppendLog(Log.CreateLog(String.Format("Air Humidity captured : {0}", capturedValue), LogType.Information));  

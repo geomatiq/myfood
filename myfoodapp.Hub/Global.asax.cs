@@ -32,7 +32,7 @@ namespace myfoodapp.Hub
             // Disable the HTTP Header X-Frame-Options: SAMEORIGIN
             AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
             //Enable JSONP
-            //FormatterConfig.RegisterFormatters(GlobalConfiguration.Configuration.Formatters);
+            FormatterConfig.RegisterFormatters(GlobalConfiguration.Configuration.Formatters);
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthorizationHeaderHandler());
 

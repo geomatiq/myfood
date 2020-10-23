@@ -31,6 +31,7 @@ namespace myfoodapp.Hub.Providers
             // Add allowed origins
             _policy.Origins.Add("https://neosideadesign.sharepoint.com"); //test
             _policy.Origins.Add("https://myfoodreconnectwithyourfood.sharepoint.com/");
+            _policy.Origins.Add("https://myfood.eu/");
         }
 
         public Task<CorsPolicy> GetCorsPolicyAsync(HttpRequestMessage request, CancellationToken cancellationToken)
