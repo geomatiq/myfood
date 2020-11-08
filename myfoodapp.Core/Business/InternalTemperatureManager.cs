@@ -37,11 +37,14 @@ namespace myfoodapp.Core.Business
 
             var str = "sudo /opt/vc/bin/vcgencmd measure_temp".Bash();
 
+            if(str.Length > 2)
+            {
             str = str.Substring(5,2);
-                
+            
             rslt[2] = str[0];
             rslt[3] = str[1];
-            
+            }
+                      
             return rslt.ToString();
         }
     }
