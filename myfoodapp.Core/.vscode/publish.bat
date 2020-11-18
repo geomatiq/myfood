@@ -1,1 +1,1 @@
-bash /mnt/c/Users/mgand/source/repos/myfood/myfoodapp.Core/.vscode/publish.sh
+bash /mnt/c/Code/source/repos/myfood/myfoodapp.Core/.vscode/publish.sh

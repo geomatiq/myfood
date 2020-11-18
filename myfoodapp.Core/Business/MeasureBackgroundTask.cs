@@ -16,7 +16,7 @@ namespace myfoodapp.Core.Business
         private AtlasSensorManager sensorManager;
         private HumidityTemperatureManager humTempManager;
         private SigfoxInterfaceManager sigfoxManager;
-        private InternalTemperatureManager internalTemperatureManager;
+        private InternalHealthManager internalHealthManager;
         private UserSettings userSettings;
         private UserSettingsManager userSettingsManager = UserSettingsManager.GetInstance;
         private LogManager lg = LogManager.GetInstance;
@@ -63,8 +63,11 @@ namespace myfoodapp.Core.Business
         public void Run()
         {
             if (bw.IsBusy)
+            {
+                lg.AppendLog(Log.CreateLog("Measure Service busy...", LogType.Information));
                 return;
-
+            }
+                
             lg.AppendLog(Log.CreateLog("Measure Service running...", LogType.Information));
             bw.RunWorkerAsync();
         }
@@ -151,7 +154,7 @@ namespace myfoodapp.Core.Business
 
                 humTempManager = HumidityTemperatureManager.GetInstance;
 
-                internalTemperatureManager = InternalTemperatureManager.GetInstance;
+                internalHealthManager = InternalHealthManager.GetInstance;
                 
                 if (userSettings.isTempHumiditySensorEnable)
                 {
@@ -336,15 +339,37 @@ namespace myfoodapp.Core.Business
 
                             try
                             {
-                                var temp = internalTemperatureManager.GetInternalTemperatureSignature(); 
-                                messageSignature[12] = temp[0];
-                                messageSignature[13] = temp[1];
-                                messageSignature[14] = temp[2];
-                                messageSignature[15] = temp[3];               
+                                var internalThrottled = internalHealthManager.GetInternalThrottledSignature();
+                                Task.Delay(1000);
+
+                                if(internalThrottled.Length >= 1)
+                                {
+                                    messageSignature[8] = internalThrottled[0];
+                                }
+                                    
+                                if(internalThrottled.Length == 5)
+                                {
+                                    messageSignature[9] = internalThrottled[1];
+                                    messageSignature[10] = internalThrottled[2];
+                                    messageSignature[11] = internalThrottled[3];
+                                    messageSignature[12] = internalThrottled[4];
+                                }
+
+                                var internalTemp = internalHealthManager.GetInternalTemperatureSignature();
+                                Task.Delay(1000);
+
+                                messageSignature[13] = internalTemp[0];
+                                messageSignature[14] = internalTemp[1];
+                                messageSignature[15] = internalTemp[2];
+                                        
                             }
                             catch (Exception ex)
                             {
-                                lg.AppendLog(Log.CreateErrorLog("Exception on Internal Temperature Sensor", ex));
+                                lg.AppendLog(Log.CreateErrorLog("Exception on Internal Health Information", ex));
+                                messageSignature[8] = 'C';
+                                messageSignature[9] = 'C';
+                                messageSignature[10] = 'C';
+                                messageSignature[11] = 'C';
                                 messageSignature[12] = 'C';
                                 messageSignature[13] = 'C';
                                 messageSignature[14] = 'C';
